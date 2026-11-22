@@ -162,7 +162,7 @@
     with dissolve
     un "...where am I?"
     hide adScaredOm
-    show adShockCm at adyJump
+    show adShockCm at adyJump   
     un "Welcome! My dear student!"
     show adShockOm at adyCenPos with dissolve
     hide adScaredOm
@@ -175,10 +175,48 @@
     n "He bore a coat embellished with tall, dark feathers, placed over (what-seemed to be) a glimmered suit, and a staff in the form of a key; a peculiar beaked being at the top, cubed squiggles at the bottom."
     n "The smoldering orbs etched the shape of the person deep in their mind…"
     show crblnkom at crCenPos with dissolve
-    un "oh-!"
+    tm "oh-!"
     hide crhpycm with dissolve
-    un "My word! This is unprecedented!"
-    
+    show crblnkom at crJump
+    tm "My word! This is unprecedented!"
+    hide crblnkom with dissolve
+    show adScaredOm at adyRPos
+    show crblnkcm at crLPos
+    with dissolve
+    un "Wh-what is?"
+    show adShockCm at adyRPos
+    show crblnkom at crLPos
+    with dissolve
+    hide adScaredOm
+    hide crblnkcm
+    tm "A woman! Called on by the dark mirror!"
+    hide adShockCm
+    hide crblnkom
+    with dissolve
+    n "Hushed gasps and sinister whispers echoed throughout the hall."
+    n "To her right, she only then noticed the robed figure, shying away from the light, their eyes merely peeking through their bespangled coats."
+    n "The sharp figures, the darted eyes, the amalgamation of befuddled and lustful mutterings, she could tell them from a mile away-"
+    n "-men"
+    n "The dimensions of her mind began to catch up with reality. Her mind's self had become one with her body-self at last…"
+    show adShockOm at adyCenPos with dissolve
+    un "What's happening?!"
+    un "Who are you people?!"
+    hide adShockOm with dissolve
+    show adScaredCm at adyRPos
+    show crhpyom at crLPos
+    with dissolve
+    tm "You,my dear, are within the chambers of Night Raven College! The most affluent magic school in all of Twisted Wonderland!"
+    show crhpycm at crLPos
+    show adScaredOm at adyRPos
+    with dissolve
+    un "Twisted…where…?"
+    hide adScaredOm
+    hide crhpycm
+    with dissolve
+    tm  "And I am the Headmage of these wallowing walls, I am Dire Crowley. A pleasure to make your acquaintance"
+    show crhpycm at crLPos
+    show adShockOm at adyRJump
+    un "no, no, I'm not making any acquaintances here. I'm not supposed to be here!"
 
 
     return

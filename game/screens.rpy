@@ -239,25 +239,63 @@ style choice_button_text is default:
 ## The quick menu is displayed in-game to provide easy access to the out-of-game
 ## menus.
 
+## Press Q to "pin" the bar so it stays visible (press again to go back to
+## auto-hide). Saved in persistent data, so rollback does not affect it.
+default persistent.quick_bar_pinned = False
+
+transform quick_bar_slide:
+    on appear:
+        yoffset 0
+        alpha 1.0
+    on show:
+        yoffset 60
+        alpha 0.0
+        easein 0.2 yoffset 0 alpha 1.0
+    on hide:
+        easeout 0.2 yoffset 60 alpha 0.0
+
 screen quick_menu():
 
     ## Ensure this appears on top of other screens.
     zorder 100
 
+    ## True while the mouse is in the bottom hover zone.
+    default bar_hover = False
+
     if quick_menu:
 
-        hbox:
-            style_prefix "quick"
-            style "quick_menu"
+        key "K_q" action ToggleField(persistent, "quick_bar_pinned")
 
-            textbutton _("Back") action Rollback()
-            textbutton _("History") action ShowMenu('history')
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Save") action ShowMenu('save')
-            textbutton _("Q.Save") action QuickSave()
-            textbutton _("Q.Load") action QuickLoad()
-            textbutton _("Prefs") action ShowMenu('preferences')
+        ## Invisible hover zone along the bottom of the screen.
+        ## Raise/lower ysize to make the zone taller/shorter.
+        mousearea:
+            xfill True
+            ysize 140
+            yalign 1.0
+            hovered SetScreenVariable("bar_hover", True)
+            unhovered SetScreenVariable("bar_hover", False)
+
+        showif bar_hover or persistent.quick_bar_pinned:
+            fixed at quick_bar_slide:
+                xfill True
+                ysize 160
+                yalign 1.0
+
+                ## Gradient behind the bar.
+                add "gui/quick_gradient.png" yalign 1.0
+
+                hbox:
+                    style_prefix "quick"
+                    style "quick_menu"
+
+                    textbutton _("Back") action Rollback()
+                    textbutton _("History") action ShowMenu('history')
+                    textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+                    textbutton _("Auto") action Preference("auto-forward", "toggle")
+                    textbutton _("Save") action ShowMenu('save')
+                    textbutton _("Q.Save") action QuickSave()
+                    textbutton _("Q.Load") action QuickLoad()
+                    textbutton _("Prefs") action ShowMenu('preferences')
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever

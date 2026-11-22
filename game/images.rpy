@@ -38,7 +38,7 @@ image adScaredCm = "ch/Adelaide/pj/adScaredCm.png"
 image adShockOm = "ch/Adelaide/pj/adShockOm.png"
 image adShockCm = "ch/Adelaide/pj/adShockCm.png"
 
-#====ADELAIDE====#
+#====CROWLEY====#
 image crsrsom = "ch/Crowley/srs_om.png"
 image crsrscm = "ch/Crowley/srs_cm.png"
 image crhpyom = "ch/Crowley/hpy_om.png"

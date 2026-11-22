@@ -16,6 +16,7 @@ define narc = Character(
 define un = Character("???")
 define n = Character(" ")
 define ad = Character("Adelaide")
+define tm = Character("Towering man")
 define cr = Character("Crowley")
 define narrator = nvl_narrator  
 define narNvl = Character('', kind=nvl, color="#c8ffc8")
