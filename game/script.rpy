@@ -217,6 +217,7 @@
     show crhpycm at crLPos
     show adShockOm at adyRJump
     un "no, no, I'm not making any acquaintances here. I'm not supposed to be here!"
-
+    show adShockOm at adyRJump
+    uasdasdas
 
     return
