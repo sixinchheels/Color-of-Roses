@@ -214,10 +214,53 @@
     hide crhpycm
     with dissolve
     tm  "And I am the Headmage of these wallowing walls, I am Dire Crowley. A pleasure to make your acquaintance"
+    hide adScaredCm
     show crhpycm at crLPos
     show adShockOm at adyRJump
     un "no, no, I'm not making any acquaintances here. I'm not supposed to be here!"
     show adShockOm at adyRJump
-    uasdasdas
+    un "And no one is still answering me, WHERE THE HELL AM I?!"
+    show adShockCm at adyRPos
+    hide crhpycm
+    show crhpyom at crLJump
+    cr "Nonsense, though you may be the first woman that has been called by the Dark Mirror, Night Raven College accepts the most skillful and dexterous mages that pass through these dire doorways."
+    cr "And as I said, this is Twisted Wonderland"
+    show crhpycm at crLPos
+    hide adShockCm
+    with dissolve
+    un "Mages? Dark Mirror? Doorways?"
+    show adShockOm at adyRJump
+    un "I don't know what summoned me here for what but I don't know how to do magic!"
+    show adScaredCm at adyRPos
+    show crblnkcm at crLPos
+    hide crhpycm
+    hide crhpyom
+    with dissolve
+    n "Like the fingers of a swiping giant, silence swept across the calamitous, magic chambers"
+    show crblnkom at crLPos with dissolve
+    cr "I…beg your pardon?"
+    hide crblnkom
+    show adScaredOm at adyRPos
+    with dissolve
+    cr "I don't know how to do magic! I didn't even know magic existed! I STILL believe magic doesn't exist! I don't even know if any of this is real?!"
+    hide adScaredOm 
+    show crsrscm at crLPos
+    with dissolve
+    n "The Headmage passed her a curious face"
+    show crblnkom at crLPos with dissolve
+    cr "What do you mean you don't know how to do magic…"
+    hide crblnkom
+    show adScaredOm at adyRPos
+    with dissolve
+    un "I…don't know how to do magic"
+    un "I don't know how to prove it but, please, believe me, I don't know anything about magic!"
+    hide adScaredOm
+    show crblnkom at crLPos
+    with dissolve
+    cr "Well, if you truly do not possess any magical capabilities, then why in the blazes would the mirror call unto you?"
+    
+
+
+
 
     return
