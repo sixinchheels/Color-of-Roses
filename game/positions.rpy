@@ -44,7 +44,7 @@ transform crLPos:
     ypos 1.0
     yoffset 380
 
-##SPECIAL POSITIONS FOR ADELAIDE
+##SPECIAL POSITIONS FOR CROWLEY
 transform crSCenPos:
     zoom 0.265
     xalign 0.5
@@ -52,6 +52,12 @@ transform crSCenPos:
     ypos 1.0
     yoffset 380
 
+transform crSLPos:
+    zoom 0.265
+    xalign 0.1
+    yalign 1.0
+    ypos 1.0
+    yoffset 380
 ##==============================
 
 

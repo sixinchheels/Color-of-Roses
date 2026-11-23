@@ -367,11 +367,13 @@
     hide adScaredCm
     with dissolve
     un  "No, I was just thinking whether or not that ridiculous was answer was genuine or not"
+    show crjyom at crSLJump
     hide crhpycm
-    show adScaredCm at adyRPos
-    with dissolve
-    show crhpyom at crLJump
+    hide crhpycm
+    hide crhpyom
+    show adScaredCm at adyRPos with dissolve
     cr "HAHAHAHA, how quite smart of you young lady~"
+    show crhpyom at crLPos with dissolve
     cr "But to answer you, yes, my answer is genuine"
     show crblnkcm at crLPos
     hide crhpyom
@@ -382,6 +384,7 @@
     hide adShockCm
     hide crblnkcm
     hide adScaredOm
+    hide crjyom
     with fadeRight
     n "A voice emerged from the expanse of figures shrouded in blackness…"
     ##INSERT RIDORU
