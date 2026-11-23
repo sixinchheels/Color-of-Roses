@@ -258,9 +258,72 @@
     show crblnkom at crLPos
     with dissolve
     cr "Well, if you truly do not possess any magical capabilities, then why in the blazes would the mirror call unto you?"
-    
+    hide crblnkom
+    with dissolve
+    n "The woman put all the restless thoughts aside to wrack her brain as much as she could"
+    show adScaredOm at adyRPos
+    with dissolve
+    un "Last thing I remember was..."
 
+##SCENE-FLASHBACK-------------------------------------------------------------------
 
+    window hide dissolve
+    nvl clear
+    show Bus_Home zorder 100 with dissolve
+    narc "...i went home..."
+    nvl clear
+    show Home_Night zorder 100 with dissolve
+    hide Bus_Home
+    narc "...i took a bath..."
+    nvl clear
+    show Night_Kitchen zorder 100 with dissolve
+    hide Home_Night
+    narc "...i ate..."
+    nvl clear
+    show Room_Night zorder 100 with dissolve
+    hide Night_Kitchen
+    narc "...i went to bed..."
+    hide adScaredOm
+    nvl clear
+    hide Room_Night with dissolve
+    window show dissolve
+
+##SCENE--------------------------------------------------------------------
+
+    n "Crowley simply stood in response…"
+    show crblnkom at crLPos with dissolve
+    cr "And? What else?"
+    hide crblnkom
+    hide adShockOm
+    show adScaredOm at adyRPos
+    with dissolve
+    un "Nothing, nothing else happened…"
+    show adShockOm at adyRPos with dissolve
+    un "…I went to bed, then I woke up here-"
+    hide adShockOm 
+    show adShockCm at adyRPos
+    with dissolve
+    n "She turned around in the direction of which she came, and stood face to face with a doorless coffin, the door itself, sitting beside her feet. "
+    n "A dreadful realization suddenly dawned unto her…"
+    hide adShockCm
+    hide adScaredOm
+    hide adScaredCm
+    show adShockOm at adyRJump
+    un "Wait…"
+    hide crsrscm
+    un "Am I…dead?"
+    show adShockCm at adyRPos with dissolve
+    n "Breathless silence loomed over the expanse…"
+    n  "Dwindling notions clustered and delved within the largest cavities of her imagination…"
+    hide adShockCm
+    hide crblnkcm
+    hide adScaredCm
+    hide adShockOm
+    with fadeRight
+    show jy_om at crSCenPos with fadeRight
+    cr "HAHAHAHAHAHHAHAHAHAHHAHAHAHAHA"
+    show crhpyom at crCenPos with dissolve
+    cr "NONSENSE!"
 
 
     return

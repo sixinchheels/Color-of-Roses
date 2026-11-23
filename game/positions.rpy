@@ -19,6 +19,14 @@ transform crCenPos:
     ypos 1.0
     yoffset 380
 
+transform crSCenPos:
+    zoom 0.265
+    xalign 0.5
+    yalign 1.0
+    ypos 1.0
+    yoffset 380
+
+
 transform crLPos:
     zoom 0.53
     xalign 0.1
