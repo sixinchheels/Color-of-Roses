@@ -282,11 +282,15 @@ screen quick_menu():
                 yalign 1.0
 
                 ## Gradient behind the bar.
-                add "gui/quick_gradient.png" yalign 1.0
+                ## The art is 3840px wide (2x), so shrink it to the 1920px screen.
+                add "gui/quick_gradient.png" zoom 0.5 yalign 1.0
 
                 hbox:
                     style_prefix "quick"
                     style "quick_menu"
+
+                    ## Lift the buttons off the bottom edge so text isn't clipped.
+                    yoffset -22
 
                     textbutton _("Back") action Rollback()
                     textbutton _("History") action ShowMenu('history')
@@ -318,6 +322,8 @@ style quick_button:
 
 style quick_button_text:
     properties gui.text_properties("quick_button")
+    ## Dark outline keeps the text readable over the roses.
+    outlines [ (absolute(2), "#000000cc", 0, 0) ]
 
 
 ################################################################################

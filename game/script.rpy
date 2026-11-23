@@ -170,7 +170,15 @@
     hide adShockOm 
     hide adShockCm
     with dissolve
-    show crhpycm at crCenPos with dissolve
+
+    window hide dissolve
+    show crowley_world at worldPan with dissolve
+    $ renpy.pause(cam_reveal_time(), hard=True)
+    hide crowley_world
+    show crhpycm at crCenPos
+    window show dissolve
+    window auto True
+    
     n "A towering man that bore the face of a beaked creature with its eyes hollowed out, now only orbs that omit an ominous glow remain within the halls of the empty sockets."
     n "He bore a coat embellished with tall, dark feathers, placed over (what-seemed to be) a glimmered suit, and a staff in the form of a key; a peculiar beaked being at the top, cubed squiggles at the bottom."
     n "The smoldering orbs etched the shape of the person deep in their mind…"
