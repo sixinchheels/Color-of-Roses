@@ -308,22 +308,79 @@
     hide adShockCm
     hide adScaredOm
     hide adScaredCm
-    show adShockOm at adyRJump
+    show adTrrCm at adysRPos 
     un "Wait…"
+    show adTrrOm at adysRPos with dissolve
     hide crsrscm
     un "Am I…dead?"
-    show adShockCm at adyRPos with dissolve
+    hide adTrrOm
     n "Breathless silence loomed over the expanse…"
     n  "Dwindling notions clustered and delved within the largest cavities of her imagination…"
     hide adShockCm
     hide crblnkcm
     hide adScaredCm
     hide adShockOm
+    hide adTrrCm
     with fadeRight
-    show jy_om at crSCenPos with fadeRight
+    show crjyom at crSCenPos with fadeRight
     cr "HAHAHAHAHAHHAHAHAHAHHAHAHAHAHA"
     show crhpyom at crCenPos with dissolve
+    hide crjyom
     cr "NONSENSE!"
+    hide crhpyom with fadeRight
+    show adTrrOm at adySCenPos with fadeRight
+    show adTrrOm at adySJump
+    un "Don’t just stop talking like that!"
+    hide adTrrOm
+    show adTrrCm at adysRPos 
+    show crblnkom at crLPos 
+    with fadeRight
+    show crblnkom at crLJump
+    cr "What?...............OH!"
+    show crhpyom at crLPos with dissolve
+    hide crblnkom
+    cr "My apologies, I was just thinking whether or not that ridiculous question was genuine. Of course you’re still alive!"
+    show crblnkcm at crLPos 
+    show adScaredOm at adyRPos
+    with dissolve
+    hide adTrrCm
+    un  "Well, if I’m not dead, where the hell am I?"
+    hide crblnkcm
+    show adScaredCm at adyRPos
+    with dissolve
+    cr "Young lady, I don’t know if you have heard me before, but I’ve already answered your question…"
+    show crhpyom at crLJump
+    cr "You are here, in Twisted Wonderland…"
+    show crhpycm at crLPos with dissolve
+    un "............"
+    hide crhpycm with dissolve
+    cr "My, my, speechless aren’t we?"
+    show crhpycm at crLPos
+    hide adScaredCm
+    with dissolve
+    un  "No, I was just thinking whether or not that ridiculous was answer was genuine or not"
+    hide crhpycm
+    show adScaredCm at adyRPos
+    with dissolve
+    show crhpyom at crLJump
+    cr "HAHAHAHA, how quite smart of you young lady~"
+    cr "But to answer you, yes, my answer is genuine"
+    show crblnkcm at crLPos
+    hide crhpyom
+    show adShockCm at adyRPos
+    with dissolve
+    un  "I don’t mean to rudely intrude, Headmage, but this fiasco has had its chance"
+    hide adScaredCm
+    hide adShockCm
+    hide crblnkcm
+    hide adScaredOm
+    with fadeRight
+    n "A voice emerged from the expanse of figures shrouded in blackness…"
+    ##INSERT RIDORU
+    n "Other figures dissipated within the crowd, like oil to water, at the center of the horde of robes was a singular figure, donning the same cloak as the red, highlighted only by the red hairs across his face"
+    n "Red short hair, red eyebrows,  grey eyes, and a stern, sour face"
+    n "He spoke rigidly and steely, his presence betrayed by his short stature"
+    un  "If you must deal with this matter, Headmage, I suggest you do it at a later date..."
 
 
     return

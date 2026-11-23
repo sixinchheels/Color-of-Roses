@@ -37,6 +37,9 @@ image adScaredOm = "ch/Adelaide/pj/adScaredOm.png"
 image adScaredCm = "ch/Adelaide/pj/adScaredCm.png"
 image adShockOm = "ch/Adelaide/pj/adShockOm.png"
 image adShockCm = "ch/Adelaide/pj/adShockCm.png"
+image adTrrOm = "ch/Adelaide/pj/adTrrOm.png"
+image adTrrCm = "ch/Adelaide/pj/adTrrCm.png"
+
 
 #====CROWLEY====#
 image crsrsom = "ch/Crowley/srs_om.png"
@@ -45,7 +48,7 @@ image crhpyom = "ch/Crowley/hpy_om.png"
 image crhpycm = "ch/Crowley/hpy_cm.png"
 image crblnkom = "ch/Crowley/blnk_om.png"
 image crblnkcm = "ch/Crowley/blnk_cm.png"
-image jy_om = "ch/Crowley/jy_om.png"
+image crjyom = "ch/Crowley/jy_om.png"
 
 
 
