@@ -1,4 +1,5 @@
 ﻿label start:
+##INTRO----------------------------------------------------------------
     show Bus_Home with dissolve
     narNvl "Lethargy"
     narNvl "It consumed every bone in her body"
@@ -115,6 +116,7 @@
     nvl clear
     narc "........."
 
+##SCENE1-ARRIVAL----------------------------------------------
     scene empty with dissolve
 
     un "UWAA!"
@@ -285,7 +287,7 @@
     with dissolve
     un "Last thing I remember was..."
 
-##SCENE-FLASHBACK-------------------------------------------------------------------
+##SCENE1.5-FLASHBACK-------------------------------------------------------------------
 
     window hide dissolve
     nvl clear
@@ -308,7 +310,7 @@
     hide Room_Night with dissolve
     window show dissolve
 
-##SCENE--------------------------------------------------------------------
+##END OF SCENE 1.5--------------------------------------------------------------------
 
     n "Crowley simply stood in response…"
     show crblnkom at crLPos with dissolve
@@ -404,6 +406,76 @@
     n "Red short hair, red eyebrows,  grey eyes, and a stern, sour face"
     n "He spoke rigidly and steely, his presence betrayed by his short stature"
     un "If you must deal with this matter, Headmage, I suggest you do it at a later date..."
+    un "We have ceremonies scheduled..."
+    show crblnkom at crLPos with fadeRight
+    cr "Right, thank you for the reminder, Mr. Rosehearts"
+    cr "But as much as I want to push this matter aside, the state of affairs urges me not to do so"
+    cr "All of you must understand, not only has the mirror called on a person without magical abilities, it just so happened to be a woman as well…"
+    show adScaredCm at adyRPos with fadeRight
+    cr "And judging by your statements, it would seem that you have never even come into an encounter with the Dark Carriage…"
+    hide crblnkom
+    show crsrsom at crLJump
+    cr "Settle down students!"
+    show crblnkom at crLPos
+    hide crsrsom 
+    with dissolve
+    cr "Very well, as time is getting ahead of us, we shall put this matter aside for the moment"
+    show crblnkcm at crLPos with dissolve
+    show adTrrCm at adySRJump
+    hide adScaredCm
+    n "The Headmage turned to the direction of the unforeseen guest…"
+    hide crblnkcm with dissolve
+    cr "Young lady, what is your name?"
+    show adScaredOm at adyRPos 
+    show crblnkcm at crLPos
+    hide adTrrCm
+    with dissolve
+    un "..........Adelaide"
+    show adScaredCm at adyRPos
+    hide adScaredOm
+    hide crblnkcm
+    with dissolve
+    cr "Miss Adelaide, if you would be so kind as to follow me…"
+    show crhpyom at crLPos with dissolve
+    cr "Let the ceremonies continue without me. Professors, Housewardens, hold the place down please~"
+    hide crhpyom
+    hide crblnkom
+    hide adScaredCm
+    with fadeRight
+    n "The horde of students parted like the seas as the man stepped forward. Reluctantly, she followed."
+    n "Dangerous darting of the eyes of men followed her like shadows as she entered the throng. Confusion, amazement, curiosity, wickedness, worry, lust. Practically every emotion on the spectrum gazed upon her as she walked within them."
+    n "But she cared not for it; making sure only to keep her eyes on the feathered back of the Headmage as he opened the doors and closed it behind him"
+
+##SCENE2-INTRODUCTIONS-------------------------------------------------------------------------------------
+
+    scene hallway_night with ScenefadeRight
+    n "The same baleful atmosphere that took hold of the chambers they were once in, still did so as they entered the hallway…"
+    n "Malformed candelabras sprouted from the cold floor. The candles on its fingers glowed a gelid green. The walls and floors were carved with historic stones; jaded and cracked with instability. The walls themselves lined with portraits of unfamiliar faces, most of them and their eyes were shielded by the darkness"
+    n "The Headmage walked into a direction; she followed closely, making watch of the eyes of the faces on the wall. He suddenly spoke to her, shaking her position…"    
+    show crhpyom at crCenPos with fadeRight
+    cr "Worry not, young lady,"
+    cr "no harm is to come to you as long as you are with me~"
+    hide crhpyom with fadeRight
+    ##INSERT SPRITE
+    ad "(as if that’s reassuring)"
+
+    scene outhall_night with ScenefadeRight
+    n "One pathway leads to another and soon, they reach the outside world. A castle-like structure welcomes her. Bricks and stones of ancient lore stacked into towers, high walkways and arches as far as her eye could see."
+    n "Below her feet, shrubbery peaked through the cold stones. It showed signs of a garden or a small space of greenery of some sort"
+    show crblnkom at crCenPos with fadeRight
+    cr "Below us at the moment is the college’s central courtyard. Despite its place, not a lot of students enter there, even during times of their break times."
+    show crhpyom at crCenPos with dissolve
+    hide crblnkom
+    cr "Anyway, follow me, we’re getting close…"
+
+    scene headmageoffice with ScenefadeRight
+    show crblnkcm at crCenPos with fadeRight
+    n "Soon they enter a large space within the castle. For once, the room was brightly lit; it was a sight for sore eyes, and a sight that could bring out sore eyes with the amount time she was veiled in darkness"
+    show crblnkcm at crSitDown
+    n "The Headmage sat at the only table within the place's walls. The table sat at the lips of a long purple carpet at the edges of the room. Candelabras sat one both front corners of hardwood-like counter"
+    hide crblnkcm
+    show crhpyom at crSitCenPos
+    cr "Please take a seat~"
 
 
     return

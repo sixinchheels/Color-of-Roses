@@ -1,6 +1,7 @@
 define intro_dissolve = Dissolve (3.0)
 define flashbang = Dissolve (0.3)
 define flash_dissolve = Dissolve(0.2)
+define ScenefadeRight = ImageDissolve("gui/wipe_lr.png", 0.7, ramplen=64)
 define fadeRight = ImageDissolve("gui/wipe_lr.png", 0.3, ramplen=64)
 define fadeLeft  = ImageDissolve("gui/wipe_lr.png", 0.3, ramplen=64, reverse=True)
 transform bg_slow_fadein:
