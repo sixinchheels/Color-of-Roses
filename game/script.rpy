@@ -180,17 +180,16 @@
     window auto True
     
     n "A towering man that bore the face of a beaked creature with its eyes hollowed out, now only orbs that omit an ominous glow remain within the halls of the empty sockets."
-    n "He bore a coat embellished with tall, dark feathers, placed over (what-seemed to be) a glimmered suit, and a staff in the form of a key; a peculiar beaked being at the top, cubed squiggles at the bottom."
     n "The smoldering orbs etched the shape of the person deep in their mind…"
     show crblnkom at crCenPos with dissolve
     tm "oh-!"
     hide crhpycm with dissolve
     show crblnkom at crJump
     tm "My word! This is unprecedented!"
-    hide crblnkom with dissolve
+    hide crblnkom
     show adScaredOm at adyRPos
     show crblnkcm at crLPos
-    with dissolve
+    with fadeRight
     un "Wh-what is?"
     show adShockCm at adyRPos
     show crblnkom at crLPos
@@ -200,20 +199,20 @@
     tm "A woman! Called on by the dark mirror!"
     hide adShockCm
     hide crblnkom
-    with dissolve
+    with fadeRight
     n "Hushed gasps and sinister whispers echoed throughout the hall."
     n "To her right, she only then noticed the robed figure, shying away from the light, their eyes merely peeking through their bespangled coats."
     n "The sharp figures, the darted eyes, the amalgamation of befuddled and lustful mutterings, she could tell them from a mile away-"
     n "-men"
     n "The dimensions of her mind began to catch up with reality. Her mind's self had become one with her body-self at last…"
-    show adShockOm at adyCenPos with dissolve
+    show adShockOm at adyCenPos with fadeRight
     un "What's happening?!"
     un "Who are you people?!"
-    hide adShockOm with dissolve
+    hide adShockOm
     show adScaredCm at adyRPos
     show crhpyom at crLPos
-    with dissolve
-    tm "You,my dear, are within the chambers of Night Raven College! The most affluent magic school in all of Twisted Wonderland!"
+    with fadeRight
+    tm "You, my dear, are within the chambers of Night Raven College! The most affluent magic school in all of Twisted Wonderland!"
     show crhpycm at crLPos
     show adScaredOm at adyRPos
     with dissolve
@@ -226,7 +225,8 @@
     show crhpycm at crLPos
     show adShockOm at adyRJump
     un "no, no, I'm not making any acquaintances here. I'm not supposed to be here!"
-    show adShockOm at adyRJump
+    hide adShockOm
+    show adTrrOm at adySRJump
     un "And no one is still answering me, WHERE THE HELL AM I?!"
     show adShockCm at adyRPos
     hide crhpycm
@@ -250,7 +250,7 @@
     hide crblnkom
     show adScaredOm at adyRPos
     with dissolve
-    cr "I don't know how to do magic! I didn't even know magic existed! I STILL believe magic doesn't exist! I don't even know if any of this is real?!"
+    un "I don't know how to do magic! I didn't even know magic existed! I STILL believe magic doesn't exist! I don't even know if any of this is real?!"
     hide adScaredOm 
     show crsrscm at crLPos
     with dissolve
@@ -266,7 +266,19 @@
     show crblnkom at crLPos
     with dissolve
     cr "Well, if you truly do not possess any magical capabilities, then why in the blazes would the mirror call unto you?"
+    hide adScaredCm
     hide crblnkom
+    hide adShockOm
+    show adTrrOm at adySRJump
+    un "How should I know?"
+    show adTrrCm at adysRPos
+    show crblnkom at crLPos
+    with dissolve
+    cr "Hold on a moment"
+    cr "What was the last thing you remember before you were sent here?"
+    hide crblnkom
+    hide crsrscm
+    show adScaredCm at adyRPos
     with dissolve
     n "The woman put all the restless thoughts aside to wrack her brain as much as she could"
     show adScaredOm at adyRPos
@@ -391,7 +403,7 @@
     n "Other figures dissipated within the crowd, like oil to water, at the center of the horde of robes was a singular figure, donning the same cloak as the red, highlighted only by the red hairs across his face"
     n "Red short hair, red eyebrows,  grey eyes, and a stern, sour face"
     n "He spoke rigidly and steely, his presence betrayed by his short stature"
-    un  "If you must deal with this matter, Headmage, I suggest you do it at a later date..."
+    un "If you must deal with this matter, Headmage, I suggest you do it at a later date..."
 
 
     return
