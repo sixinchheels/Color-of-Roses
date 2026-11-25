@@ -469,8 +469,10 @@ screen game_menu(title, scroll=None, yinitial=0.0, spacing=0):
 
     if main_menu:
         add gui.main_menu_background
+        add Solid("#000000cc")
     else:
-        add gui.game_menu_background
+        ## In game: the scene you were just playing shows through, shaded.
+        add Solid(menu_shade)
 
     frame:
         style "game_menu_outer_frame"

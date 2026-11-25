@@ -25,14 +25,35 @@ define vine_leaf     = "#2f5d34"
 define garland_fill  = "#2b0000"
 define garland_gap   = 26       # extra space between menu groups
 
+## Roses that hang where each tag meets the vine (gui/shaded_menu_rose.png while
+## idle, gui/menu_rose.png on hover), and the shade laid over the scene that
+## shows behind the in-game menu (the last two digits are the opacity).
+define rose_size     = 56
+define menu_shade    = "#05000aa6"
+
 init python:
 
     import math
 
-    ## Height of the vine at horizontal position x: it sags in the middle.
+    ## Where the tags and roses hang, measured from the lower edge of
+    ## gui/vine.png (shown at half size, 1920x120): the height of that line at
+    ## every 20 px across the screen, from x = 0 to x = 1920.
     ## (Positions handed to Ren'Py must be ints: a float means "fraction of the screen".)
+    garland_line = [
+        8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 8, 11, 16,
+        22, 26, 27, 28, 30, 34, 37, 41, 46, 49, 49, 49, 50,
+        53, 55, 59, 63, 64, 63, 62, 64, 66, 67, 70, 72, 72,
+        70, 68, 68, 68, 68, 69, 70, 68, 64, 62, 64, 68, 70,
+        69, 68, 68, 68, 68, 70, 72, 72, 70, 67, 65, 64, 62,
+        63, 64, 62, 59, 55, 52, 50, 48, 49, 49, 46, 41, 37,
+        33, 30, 28, 27, 26, 22, 16, 11, 8, 8, 8, 8, 8,
+        8, 8, 8, 8, 8, 8,
+    ]
+
     def rope_y(x):
-        return 6.0 + 40.0 * (1.0 - ((x - 960.0) / 960.0) ** 2)
+        i = max(0, min(int(x // 20), len(garland_line) - 2))
+        f = (x - i * 20) / 20.0
+        return garland_line[i] * (1.0 - f) + garland_line[i + 1] * f
 
     def vine_star(color, size=16):
         """Eight-point rosette made from two squares."""
@@ -42,37 +63,8 @@ init python:
                       rotate_pad=False, align=(0.5, 0.5)),
             xysize=(40, 40))
 
-    def vine_garland_art():
-        """The vine itself: short rotated segments along rope_y, plus leaves."""
-        parts = []
-        step = 20
-
-        for x0 in range(0, 1920, step):
-            x1 = x0 + step
-            y0, y1 = rope_y(x0), rope_y(x1)
-            angle = math.degrees(math.atan2(y1 - y0, x1 - x0))
-            parts.append(Transform(
-                Solid(vine_rope, xysize=(step + 3, 5)),
-                rotate=angle, rotate_pad=False,
-                anchor=(0.5, 0.5),
-                pos=(int(round((x0 + x1) / 2.0)), int(round((y0 + y1) / 2.0)))))
-
-        side = 1
-        for x in range(45, 1920, 95):
-            y = rope_y(x)
-            angle = math.degrees(math.atan2(rope_y(x + 1) - rope_y(x - 1), 2.0))
-            leaf_angle = angle + side * 50
-            rad = math.radians(leaf_angle)
-            parts.append(Transform(
-                Solid(vine_leaf, xysize=(18, 7)),
-                rotate=leaf_angle, rotate_pad=False,
-                anchor=(0.5, 0.5),
-                pos=(int(round(x + 9 * math.cos(rad))), int(round(y + 9 * math.sin(rad))))))
-            side = -side
-
-        return Fixed(*parts, xysize=(1920, 120))
-
-define vine_garland_art = vine_garland_art()
+## The garland itself: gui/vine.png is 3840x240, shown at half size.
+define vine_garland_art = Transform("gui/vine.png", zoom=0.5)
 
 
 ## The bud on the vine: grows and spins when hovered, sways while current.
@@ -121,6 +113,28 @@ transform vine_core:
         easeout 0.30 alpha 1.0
     on selected_hover:
         easeout 0.20 alpha 1.0
+
+## The rose on the vine: swells and turns a little when hovered, sways while current.
+transform rose_bud(x, y):
+    xpos x
+    ypos y
+    anchor (0.5, 0.5)
+    transform_anchor True
+    rotate_pad False
+    zoom 1.0
+    rotate 0
+    on idle:
+        easein 0.25 zoom 1.0 rotate 0
+    on hover:
+        easeout 0.30 zoom 1.22 rotate 18
+    on selected_idle:
+        easeout 0.30 zoom 1.22 rotate 0
+        block:
+            ease 1.4 rotate -8
+            ease 1.4 rotate 8
+            repeat
+    on selected_hover:
+        easeout 0.20 zoom 1.30 rotate 0
 
 ## The tag swings from the point where it hangs on the vine.
 transform garland_swing(px):
@@ -192,14 +206,14 @@ screen garland_tag(label, act, x, y, tw):
 
                     text label style "navigation_button_text" size 28 align (0.5, 0.5)
 
-            ## The bud on the vine, where the tag hangs.
+            ## The rose on the vine, where the tag hangs: shaded while idle,
+            ## the bright rose fades in on top of it when hovered.
             fixed:
-                xysize (40, 40)
-                at vine_bud(px, 0)
+                xysize (rose_size, rose_size)
+                at rose_bud(px, 10)
 
-                add vine_star(vine_red)
-                add vine_star(vine_hot) at vine_glow
-                add Solid(vine_petal, xysize=(6, 6)) at vine_core
+                add "gui/shaded_menu_rose.png" zoom (rose_size / 512.0) align (0.5, 0.5)
+                add "gui/menu_rose.png" zoom (rose_size / 512.0) align (0.5, 0.5) at vine_glow
 
 
 screen navigation():
@@ -239,7 +253,7 @@ screen navigation():
         if main_menu:
             region_l, region_r = 360, 1560
         else:
-            region_l, region_r = 500, 1880
+            region_l, region_r = 500, 1700
 
         count = sum(len(g) for g in groups)
         extra = garland_gap * (len(groups) - 1)
@@ -267,9 +281,10 @@ style game_menu_content_frame:
     left_margin 255
     right_margin 255
 
-## Same 80% black the old overlay png drew, minus its red divider line.
+## The shading behind the page is drawn by screen game_menu itself (in
+## screens.rpy), so the frame needs no background of its own.
 style game_menu_outer_frame:
-    background Solid("#000000cc")
+    background None
 
 ## The main menu's dark left strip is no longer needed either.
 style main_menu_frame:
