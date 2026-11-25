@@ -335,7 +335,7 @@ style quick_button_text:
 ## This screen is included in the main and game menus, and provides navigation
 ## to other menus, and to start the game.
 
-screen navigation():
+screen navigation_old():
 
     vbox:
         style_prefix "navigation"
