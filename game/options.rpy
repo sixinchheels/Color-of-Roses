@@ -79,7 +79,7 @@ define config.exit_transition = page_fold_out
 
 ## Between screens of the game menu.
 
-define config.intra_transition = dissolve
+define config.intra_transition = None
 
 
 ## A transition that is used after a game has been loaded.

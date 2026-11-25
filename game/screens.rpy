@@ -649,6 +649,29 @@ screen load():
     use file_slots(_("Load"))
 
 
+## Save / load slots: a wreath of roses (gui/slot_wreath.png) blooms round a slot
+## when the mouse is over it. The wreath is stored at 2x and shown at half size.
+##   slot_band      - how far the wreath reaches beyond the thumbnail, on every side
+##   slot_grid_ypos - top of the grid, measured from the top of the page area
+define slot_band      = 38
+define slot_cell_w    = 384 + 2 * slot_band          ## 460: wreath, thumbnail, wreath
+define slot_cell_h    = 216 + 2 * slot_band + 28     ## 320: ... plus one line for the date
+define slot_text_y    = 216 + 2 * slot_band          ## the date sits right under the wreath
+define slot_spacing   = 10
+define slot_grid_ypos = 64
+
+transform slot_rose_fade:
+    alpha 0.0
+    on idle:
+        easein 0.20 alpha 0.0
+    on hover:
+        easeout 0.25 alpha 1.0
+    on selected_idle:
+        easein 0.20 alpha 0.0
+    on selected_hover:
+        easeout 0.25 alpha 1.0
+
+
 screen file_slots(title):
 
     default page_name_value = FilePageNameInputValue(pattern=_("Page {}"), auto=_("Automatic saves"), quick=_("Quick saves"))
@@ -678,9 +701,9 @@ screen file_slots(title):
                 style_prefix "slot"
 
                 xalign 0.5
-                yalign 0.5
+                ypos slot_grid_ypos
 
-                spacing gui.slot_spacing
+                spacing slot_spacing
 
                 for i in range(gui.file_slot_cols * gui.file_slot_rows):
 
@@ -689,17 +712,33 @@ screen file_slots(title):
                     button:
                         action FileAction(slot)
 
-                        has vbox
+                        xysize (slot_cell_w, slot_cell_h)
+                        padding (0, 0)
+                        background None
 
-                        add FileScreenshot(slot) xalign 0.5
+                        fixed:
+                            xysize (slot_cell_w, slot_cell_h)
 
-                        text FileTime(slot, format=_("{#file_time}%A, %B %d %Y, %H:%M"), empty=_("empty slot")):
-                            style "slot_time_text"
+                            ## The roses, behind everything else. They fade in on hover.
+                            add Transform("gui/slot_wreath.png", zoom=0.5) at slot_rose_fade
 
-                        text FileSaveName(slot):
-                            style "slot_name_text"
+                            ## The plate that shows for an empty slot (a little lighter on hover).
+                            add Solid("#510000", xysize=(384, 216)) pos (slot_band, slot_band)
+                            add Solid("#7a0000", xysize=(384, 216)) pos (slot_band, slot_band) at slot_rose_fade
 
-                        key "save_delete" action FileDelete(slot)
+                            add FileScreenshot(slot) pos (slot_band, slot_band)
+
+                            text FileTime(slot, format=_("{#file_time}%A, %B %d %Y, %H:%M"), empty=_("empty slot")):
+                                style "slot_time_text"
+                                xalign 0.5
+                                ypos slot_text_y
+
+                            text FileSaveName(slot):
+                                style "slot_name_text"
+                                xalign 0.5
+                                ypos slot_text_y + 28
+
+                            key "save_delete" action FileDelete(slot)
 
             ## Buttons to access other pages.
             vbox:

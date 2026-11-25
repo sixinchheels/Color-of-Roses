@@ -5,9 +5,9 @@
 ##   - hover:    the bud on the vine blooms and the tag swings like a pendulum.
 ##   - current:  the page you are on hangs lower, with its bud in bloom, and
 ##               sways gently.
-## Entries are grouped, with a wider gap between groups:
-##   Story (History, Save, Load) / Settings (Preferences, Help, About) /
-##   Leave (Main Menu, Quit).
+## The tags are rose-framed boxes (gui/menu_option_tag*.png), all the same size
+## and all the same distance apart:
+##   History, Save, Load, Preferences, Help, About, Main Menu, Quit.
 ##
 ## With the sidebar gone, the page content is re-centred and the old red
 ## divider is dropped (the overlay png that drew it is replaced by a plain
@@ -23,7 +23,27 @@ define vine_petal    = "#ffd9df"
 define vine_rope     = "#7a0000"
 define vine_leaf     = "#2f5d34"
 define garland_fill  = "#2b0000"
-define garland_gap   = 26       # extra space between menu groups
+
+## The rose boxes (gui/menu_option_tag.png, and gui/menu_option_tag_hover.png for
+## the lit-up state). Both images are stored at 2x and shown at half size.
+##   tag_w / tag_gap  - width of one box (roses included) and the EQUAL gap left
+##                      between every pair of boxes
+##   tag_text_size    - label size; the longest label ("Main Menu") leaves about
+##                      14 px between its letters and the red rim on each side
+define tag_w         = 172
+define tag_gap       = 10
+define tag_art_h     = 80       # height of the box art (roses included)
+define tag_pad       = 8        # transparent margin round the art (room for the glow)
+define tag_art_y     = 22       # where the art starts below the vine
+define tag_string    = 36       # the string, from the vine down to the box's rim
+define tag_inner_cx  = 86       # centre of the red opening, from the art's left edge
+define tag_inner_cy  = 39       # centre of the red opening, from the art's top edge
+define tag_text_size = 24
+
+## Where the row of boxes is centred (the page title sits at the top-left of the
+## game menu, so its row is centred a little to the right of the screen).
+define tag_row_cx_game = 1165
+define tag_row_cx_main = 960
 
 ## Roses that hang where each tag meets the vine (gui/shaded_menu_rose.png while
 ## idle, gui/menu_rose.png on hover), and the shade laid over the scene that
@@ -168,45 +188,46 @@ transform garland_swing(px):
 style garland_button is empty
 
 
-## One hanging tag.
-##   x, y - where the tag hangs from the vine (its horizontal centre)
-##   tw   - tag width
-screen garland_tag(label, act, x, y, tw):
+## One hanging box.
+##   x, y - where the box hangs from the vine (its horizontal centre)
+screen garland_tag(label, act, x, y):
 
-    $ th = 60
-    $ px = tw // 2
+    $ px = tag_w // 2
+    $ swing_h = tag_art_y + tag_art_h
+    $ btn_h = swing_h + 26          ## spare room below, so the swing never leaves the hover area
 
     button:
         style "garland_button"
         xpos x - px
         ypos y
-        xsize tw
-        ysize 20 + th + 26      ## spare room below, so the swing never leaves the hover area
+        xysize (tag_w, btn_h)
         action act
 
         fixed:
-            xsize tw
-            ysize 20 + th + 26
+            xysize (tag_w, btn_h)
 
-            ## The swinging part: string and tag.
+            ## The swinging part: string, rose box and label.
             fixed:
-                xysize (tw, 20 + th)
+                xysize (tag_w, swing_h)
                 at garland_swing(px)
 
-                add Solid(vine_red, xysize=(2, 22)) xpos px - 1 ypos 0
+                add Solid(vine_red, xysize=(2, tag_string)) xpos px - 1 ypos 0
 
+                ## The rose box: the bright version fades in over it on hover.
                 fixed:
-                    xpos 0
-                    ypos 20
-                    xysize (tw, th)
+                    pos (-tag_pad, tag_art_y - tag_pad)
+                    xysize (tag_w + 2 * tag_pad, tag_art_h + 2 * tag_pad)
 
-                    add Solid(vine_red, xysize=(tw, th))
-                    add Solid(vine_hot, xysize=(tw, th)) at vine_glow
-                    add Solid(garland_fill, xysize=(tw - 4, th - 4)) pos (2, 2)
+                    add Transform("gui/menu_option_tag.png", zoom=0.5)
+                    add Transform("gui/menu_option_tag_hover.png", zoom=0.5) at vine_glow
 
-                    text label style "navigation_button_text" size 28 align (0.5, 0.5)
+                ## The label, centred in the red opening of the box.
+                text label style "navigation_button_text":
+                    size tag_text_size
+                    anchor (0.5, 0.5)
+                    pos (tag_inner_cx, tag_art_y + tag_inner_cy)
 
-            ## The rose on the vine, where the tag hangs: shaded while idle,
+            ## The rose on the vine, where the box hangs: shaded while idle,
             ## the bright rose fades in on top of it when hovered.
             fixed:
                 xysize (rose_size, rose_size)
@@ -221,56 +242,39 @@ screen navigation():
     add vine_garland_art
 
     python:
-        groups = []
+        entries = []
 
-        story = []
         if main_menu:
-            story.append((_("Start"), Start()))
+            entries.append((_("Start"), Start()))
         else:
-            story.append((_("History"), ShowMenu("history")))
-            story.append((_("Save"), ShowMenu("save")))
-        story.append((_("Load"), ShowMenu("load")))
-        groups.append(story)
+            entries.append((_("History"), ShowMenu("history")))
+            entries.append((_("Save"), ShowMenu("save")))
+        entries.append((_("Load"), ShowMenu("load")))
 
-        settings = [(_("Preferences"), ShowMenu("preferences"))]
+        entries.append((_("Preferences"), ShowMenu("preferences")))
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
-            settings.append((_("Help"), ShowMenu("help")))
-        settings.append((_("About"), ShowMenu("about")))
-        groups.append(settings)
+            entries.append((_("Help"), ShowMenu("help")))
+        entries.append((_("About"), ShowMenu("about")))
 
-        leave = []
         if _in_replay:
-            leave.append((_("End Replay"), EndReplay(confirm=True)))
+            entries.append((_("End Replay"), EndReplay(confirm=True)))
         elif not main_menu:
-            leave.append((_("Main Menu"), MainMenu()))
+            entries.append((_("Main Menu"), MainMenu()))
         if renpy.variant("pc"):
-            leave.append((_("Quit"), Quit(confirm=not main_menu)))
-        if leave:
-            groups.append(leave)
+            entries.append((_("Quit"), Quit(confirm=not main_menu)))
 
-        ## Spread the tags over the free part of the top edge (the page title
-        ## sits at the top-left of the game menu; the main menu has no title there).
-        if main_menu:
-            region_l, region_r = 360, 1560
-        else:
-            region_l, region_r = 500, 1700
-
-        count = sum(len(g) for g in groups)
-        extra = garland_gap * (len(groups) - 1)
-        slot = (region_r - region_l - extra) / float(count)
-        tag_w = int(min(172, slot - 10))
+        ## One row, every box the same size and the same distance from the next.
+        row_cx = tag_row_cx_main if main_menu else tag_row_cx_game
+        count = len(entries)
+        row_w = count * tag_w + (count - 1) * tag_gap
+        row_l = int(round(row_cx - row_w / 2.0))
 
         placed = []
-        cx = region_l + slot / 2.0
-        for gi, g in enumerate(groups):
-            if gi:
-                cx += garland_gap
-            for lab, act in g:
-                placed.append((lab, act, int(cx)))
-                cx += slot
+        for i, (lab, act) in enumerate(entries):
+            placed.append((lab, act, row_l + tag_w // 2 + i * (tag_w + tag_gap)))
 
     for lab, act, tx in placed:
-        use garland_tag(lab, act, tx, int(rope_y(tx)), tag_w)
+        use garland_tag(lab, act, tx, int(rope_y(tx)))
 
 
 ## The sidebar is gone, so give the page its width back and centre it.
